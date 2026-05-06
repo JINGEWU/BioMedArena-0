@@ -1,0 +1,392 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1050" viewBox="0 0 1800 1050" role="img" aria-labelledby="title desc">
+  <title id="title">How BioMedArena Processes an RNA-seq Research Question</title>
+  <desc id="desc">A five-step workflow diagram showing case input, setup, iterative tool use, context management, and answer scoring in BioMedArena.</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="16" markerHeight="16" refX="13" refY="8" orient="auto">
+      <path d="M0,0 L16,8 L0,16 Z" fill="#1f7fa5"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="16" markerHeight="16" refX="13" refY="8" orient="auto">
+      <path d="M0,0 L16,8 L0,16 Z" fill="#7a3f87"/>
+    </marker>
+    <marker id="arrow-teal" markerWidth="16" markerHeight="16" refX="13" refY="8" orient="auto">
+      <path d="M0,0 L16,8 L0,16 Z" fill="#258b88"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="16" markerHeight="16" refX="13" refY="8" orient="auto">
+      <path d="M0,0 L16,8 L0,16 Z" fill="#c77920"/>
+    </marker>
+    <filter id="soft-shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#9aa4af" flood-opacity="0.30"/>
+    </filter>
+    <style>
+      .bg { fill: #f7fbfd; }
+      .title { font: 700 38px Arial, Helvetica, sans-serif; fill: #101820; }
+      .panel-title { font: 700 24px Arial, Helvetica, sans-serif; fill: #ffffff; }
+      .label { font: 700 18px Arial, Helvetica, sans-serif; fill: #101820; }
+      .text { font: 16px Arial, Helvetica, sans-serif; fill: #1f2933; }
+      .small { font: 14px Arial, Helvetica, sans-serif; fill: #374151; }
+      .tiny { font: 12px Arial, Helvetica, sans-serif; fill: #374151; }
+      .mono { font: 15px Menlo, Consolas, monospace; fill: #243447; }
+      .stepnum { font: 700 28px Arial, Helvetica, sans-serif; fill: #ffffff; }
+      .note { font: 15px Arial, Helvetica, sans-serif; fill: #5b3341; }
+      .caption { font: 18px Arial, Helvetica, sans-serif; fill: #263238; }
+      .muted { fill: #65748b; }
+      .panel-blue { fill: #f0f9ff; stroke: #1687b2; stroke-width: 4; }
+      .panel-purple { fill: #fbf4ff; stroke: #884595; stroke-width: 4; }
+      .panel-teal { fill: #effdfb; stroke: #1b918c; stroke-width: 4; }
+      .panel-orange { fill: #fff8ee; stroke: #d88424; stroke-width: 4; }
+      .panel-coral { fill: #fff4ef; stroke: #d76552; stroke-width: 4; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1800" height="1050"/>
+  <text class="title" x="70" y="62">How BioMedArena Processes an RNA-seq Research Question: From Input to Answer in 5 Steps</text>
+
+  <!-- Step 1: Case input -->
+  <g id="step-1">
+    <rect class="panel-blue" x="55" y="105" width="515" height="445" rx="14"/>
+    <circle cx="62" cy="110" r="31" fill="#1687b2" stroke="#0d5d7e" stroke-width="3"/>
+    <text class="stepnum" x="53" y="120">1</text>
+    <rect x="238" y="86" width="160" height="44" rx="8" fill="#1687b2" stroke="#0d5d7e" stroke-width="3"/>
+    <text class="panel-title" x="261" y="116">Case input</text>
+
+    <!-- researcher icon -->
+    <circle cx="185" cy="300" r="54" fill="#f2c3a5" stroke="#6b4a3a" stroke-width="3"/>
+    <path d="M132 300 Q185 225 238 300 Q225 238 185 238 Q145 238 132 300" fill="#3f342d"/>
+    <circle cx="165" cy="305" r="10" fill="#ffffff" stroke="#2b2b2b" stroke-width="3"/>
+    <circle cx="205" cy="305" r="10" fill="#ffffff" stroke="#2b2b2b" stroke-width="3"/>
+    <line x1="175" y1="305" x2="195" y2="305" stroke="#2b2b2b" stroke-width="3"/>
+    <path d="M165 335 Q185 350 205 335" fill="none" stroke="#7b3f31" stroke-width="3"/>
+    <path d="M118 485 L155 372 L215 372 L253 485 Z" fill="#ffffff" stroke="#8aa1aa" stroke-width="3"/>
+    <path d="M155 372 L185 430 L215 372" fill="#dceefa" stroke="#8aa1aa" stroke-width="2"/>
+
+    <!-- speech bubble -->
+    <path d="M105 145 H362 Q390 145 390 173 V255 Q390 283 362 283 H245 L215 330 L212 283 H105 Q77 283 77 255 V173 Q77 145 105 145 Z" fill="#ffffff" stroke="#223a4a" stroke-width="3"/>
+    <text class="label" text-anchor="middle" x="234" y="181">
+      <tspan x="234" dy="0">Find top-10 differentially</tspan>
+      <tspan x="234" dy="24">expressed genes between</tspan>
+      <tspan x="234" dy="24">tumor and normal, plus</tspan>
+      <tspan x="234" dy="24">enriched pathways.</tspan>
+    </text>
+
+    <!-- tags -->
+    <rect x="405" y="142" width="135" height="34" rx="7" fill="#eef2f7" stroke="#b9c4cf" stroke-width="2"/>
+    <text class="small" x="423" y="165">Computational</text>
+    <rect x="405" y="182" width="135" height="34" rx="7" fill="#ecfdf5" stroke="#a7d7b4" stroke-width="2"/>
+    <text class="small" x="422" y="205" fill="#157347">transcriptomics</text>
+
+    <!-- file icon -->
+    <path d="M382 255 H462 L505 298 V420 H382 Z" fill="#1e83b6" stroke="#0d5d7e" stroke-width="3"/>
+    <path d="M462 255 V298 H505" fill="#74b4d6" stroke="#0d5d7e" stroke-width="3"/>
+    <text class="label" x="420" y="305" fill="#ffffff">.tsv</text>
+    <rect x="404" y="325" width="76" height="62" fill="#f7fbfd" stroke="#c9d6df" stroke-width="2"/>
+    <g fill="#2c7fb8">
+      <circle cx="418" cy="340" r="3"/><circle cx="437" cy="340" r="3"/><circle cx="456" cy="340" r="3"/><circle cx="475" cy="340" r="3"/>
+      <circle cx="418" cy="356" r="3" fill="#d94c4c"/><circle cx="437" cy="356" r="3"/><circle cx="456" cy="356" r="3" fill="#e4a11b"/><circle cx="475" cy="356" r="3"/>
+      <circle cx="418" cy="372" r="3"/><circle cx="437" cy="372" r="3" fill="#d94c4c"/><circle cx="456" cy="372" r="3"/><circle cx="475" cy="372" r="3" fill="#59a14f"/>
+    </g>
+    <text class="label" x="408" y="450">counts.tsv</text>
+    <text class="text" text-anchor="middle" x="440" y="484">
+      <tspan x="440" dy="0">TCGA breast cancer cohort</tspan>
+      <tspan x="440" dy="23">20K genes x 120 samples</tspan>
+    </text>
+    <text class="caption" text-anchor="middle" x="300" y="507">
+      <tspan x="300" dy="0">Natural-language question + data file.</tspan>
+      <tspan x="300" dy="23">No code or analysis details required.</tspan>
+    </text>
+  </g>
+
+  <!-- Arrow 1 to 2 -->
+  <line x1="570" y1="330" x2="625" y2="330" stroke="#1f7fa5" stroke-width="14" marker-end="url(#arrow-blue)"/>
+
+  <!-- Step 2: Setup -->
+  <g id="step-2">
+    <rect class="panel-purple" x="640" y="105" width="515" height="445" rx="14"/>
+    <circle cx="640" cy="110" r="31" fill="#884595" stroke="#5c2e66" stroke-width="3"/>
+    <text class="stepnum" x="631" y="120">2</text>
+    <rect x="829" y="86" width="150" height="44" rx="8" fill="#884595" stroke="#5c2e66" stroke-width="3"/>
+    <text class="panel-title" x="866" y="116">Setup</text>
+
+    <!-- agent icon -->
+    <circle cx="740" cy="245" r="61" fill="#d9e7f5" stroke="#8395a7" stroke-width="3"/>
+    <circle cx="740" cy="246" r="39" fill="#5b718c"/>
+    <circle cx="725" cy="238" r="7" fill="#c7f6ff"/>
+    <circle cx="755" cy="238" r="7" fill="#c7f6ff"/>
+    <path d="M720 263 Q740 278 760 263" fill="none" stroke="#c7f6ff" stroke-width="4"/>
+    <line x1="740" y1="183" x2="740" y2="160" stroke="#8395a7" stroke-width="4"/>
+    <circle cx="740" cy="154" r="8" fill="#e8f0f8" stroke="#8395a7" stroke-width="3"/>
+
+    <!-- prompt window -->
+    <rect x="812" y="145" width="315" height="165" rx="8" fill="#ffffff" stroke="#444444" stroke-width="3" filter="url(#soft-shadow)"/>
+    <rect x="812" y="145" width="315" height="37" rx="8" fill="#3d3d3d"/>
+    <circle cx="832" cy="163" r="6" fill="#ff6b6b"/><circle cx="853" cy="163" r="6" fill="#ffd166"/><circle cx="874" cy="163" r="6" fill="#69db7c"/>
+    <text class="label" x="910" y="170" fill="#ffffff">System prompt window</text>
+    <text class="text" x="835" y="216">
+      <tspan x="835" dy="0">You are a biomedical research agent.</tspan>
+      <tspan x="835" dy="31">Use the provided tools when helpful.</tspan>
+      <tspan x="835" dy="31">Update &lt;scratchpad&gt; after each step.</tspan>
+    </text>
+
+    <!-- tool cards -->
+    <rect x="665" y="335" width="455" height="115" rx="14" fill="#efe5f6" opacity="0.85"/>
+    <g transform="translate(685 354)">
+      <rect width="92" height="78" rx="9" fill="#ffffff" stroke="#c9b7d7" stroke-width="2"/>
+      <circle cx="46" cy="28" r="22" fill="#3776ab"/>
+      <path d="M34 29 H58 M46 17 V41" stroke="#ffd43b" stroke-width="6" stroke-linecap="round"/>
+      <text class="label" text-anchor="middle" x="46" y="68">Python</text>
+    </g>
+    <g transform="translate(795 354)">
+      <rect width="92" height="78" rx="9" fill="#ffffff" stroke="#c9b7d7" stroke-width="2"/>
+      <circle cx="30" cy="30" r="9" fill="#ce4b5c"/><circle cx="60" cy="24" r="9" fill="#6aa6b8"/><circle cx="54" cy="50" r="9" fill="#e2b14c"/><circle cx="26" cy="51" r="9" fill="#8ac07d"/>
+      <line x1="30" y1="30" x2="60" y2="24" stroke="#384a5c" stroke-width="2"/><line x1="30" y1="30" x2="54" y2="50" stroke="#384a5c" stroke-width="2"/><line x1="26" y1="51" x2="54" y2="50" stroke="#384a5c" stroke-width="2"/>
+      <text class="label" text-anchor="middle" x="46" y="68">Reactome</text>
+    </g>
+    <g transform="translate(905 354)">
+      <rect width="92" height="78" rx="9" fill="#ffffff" stroke="#c9b7d7" stroke-width="2"/>
+      <path d="M24 18 H56 Q68 18 68 31 V59 H24 Z" fill="#f3f7fb" stroke="#7a8c99" stroke-width="3"/>
+      <circle cx="60" cy="53" r="13" fill="none" stroke="#526b7a" stroke-width="4"/>
+      <line x1="70" y1="63" x2="80" y2="73" stroke="#526b7a" stroke-width="4"/>
+      <text class="label" text-anchor="middle" x="46" y="68">PubMed</text>
+    </g>
+    <g transform="translate(1015 354)">
+      <rect width="92" height="78" rx="9" fill="#ffffff" stroke="#c9b7d7" stroke-width="2"/>
+      <rect x="23" y="18" width="46" height="41" fill="#edf2f7" stroke="#66788a" stroke-width="3"/>
+      <line x1="28" y1="29" x2="64" y2="29" stroke="#66788a" stroke-width="3"/>
+      <line x1="28" y1="40" x2="58" y2="40" stroke="#66788a" stroke-width="3"/>
+      <text class="label" text-anchor="middle" x="46" y="68">Web reader</text>
+    </g>
+    <text class="caption" text-anchor="middle" x="900" y="505">
+      <tspan x="900" dy="0">System configures both prompt and toolkit,</tspan>
+      <tspan x="900" dy="23">not just one prompt to the LLM.</tspan>
+    </text>
+  </g>
+
+  <!-- Arrow 2 to 3 -->
+  <line x1="1155" y1="330" x2="1210" y2="330" stroke="#7a3f87" stroke-width="14" marker-end="url(#arrow-purple)"/>
+
+  <!-- Step 3: Iterate -->
+  <g id="step-3">
+    <rect class="panel-teal" x="1225" y="105" width="520" height="445" rx="14"/>
+    <circle cx="1225" cy="110" r="31" fill="#1b918c" stroke="#126a66" stroke-width="3"/>
+    <text class="stepnum" x="1216" y="120">3</text>
+    <rect x="1478" y="86" width="145" height="44" rx="8" fill="#1b918c" stroke="#126a66" stroke-width="3"/>
+    <text class="panel-title" x="1500" y="116">Iterate x 3</text>
+
+    <g class="iter-row" transform="translate(1245 150)">
+      <rect width="450" height="95" rx="10" fill="#d8f3f1"/>
+      <text class="label" x="25" y="37">Iter 1:</text><text class="label" x="25" y="62">EDA</text>
+      <circle cx="158" cy="47" r="31" fill="#ffffff" stroke="#1b918c" stroke-width="3"/>
+      <text class="label" text-anchor="middle" x="158" y="54" fill="#3776ab">Py</text>
+      <circle cx="238" cy="47" r="31" fill="#ffffff" stroke="#1b918c" stroke-width="3"/>
+      <polyline points="217,62 225,44 237,53 249,26 260,48" fill="none" stroke="#4779b2" stroke-width="3"/>
+      <circle cx="224" cy="44" r="3" fill="#d94c4c"/><circle cx="237" cy="53" r="3" fill="#59a14f"/><circle cx="249" cy="26" r="3" fill="#e4a11b"/>
+      <circle cx="318" cy="47" r="31" fill="#ffffff" stroke="#1b918c" stroke-width="3"/>
+      <rect x="300" y="29" width="36" height="36" fill="#ffd166"/><rect x="306" y="35" width="24" height="24" fill="#ef476f" opacity="0.7"/><rect x="313" y="24" width="24" height="24" fill="#118ab2" opacity="0.6"/>
+      <g transform="translate(368 13) rotate(-5)">
+        <rect width="68" height="68" fill="#fff2a8" stroke="#d4bc64" stroke-width="2"/>
+        <text class="note" x="8" y="25">120 samples</text>
+        <text class="note" x="8" y="48">batch effect</text>
+      </g>
+    </g>
+
+    <g class="iter-row" transform="translate(1245 260)">
+      <rect width="450" height="95" rx="10" fill="#d8f3f1"/>
+      <text class="label" x="25" y="35">Iter 2:</text><text class="label" x="25" y="60">Differential</text><text class="label" x="25" y="82">analysis</text>
+      <circle cx="158" cy="47" r="31" fill="#ffffff" stroke="#1b918c" stroke-width="3"/>
+      <text class="label" text-anchor="middle" x="158" y="54" fill="#3776ab">Py</text>
+      <circle cx="238" cy="47" r="31" fill="#ffffff" stroke="#1b918c" stroke-width="3"/>
+      <path d="M218 66 L238 25 L260 66 Z" fill="#e63946" opacity="0.8"/>
+      <line x1="213" y1="66" x2="265" y2="66" stroke="#666" stroke-width="2"/>
+      <circle cx="226" cy="58" r="3" fill="#3a86ff"/><circle cx="250" cy="52" r="3" fill="#3a86ff"/>
+      <circle cx="318" cy="47" r="31" fill="#ffffff" stroke="#1b918c" stroke-width="3"/>
+      <rect x="297" y="25" width="42" height="46" fill="#ffffff" stroke="#72808e" stroke-width="2"/>
+      <line x1="297" y1="37" x2="339" y2="37" stroke="#72808e"/><line x1="297" y1="49" x2="339" y2="49" stroke="#72808e"/><line x1="297" y1="61" x2="339" y2="61" stroke="#72808e"/>
+      <g transform="translate(368 13) rotate(-5)">
+        <rect width="68" height="68" fill="#fff2a8" stroke="#d4bc64" stroke-width="2"/>
+        <text class="note" x="10" y="33">FDR &lt; 0.05</text>
+      </g>
+    </g>
+
+    <g class="iter-row" transform="translate(1245 370)">
+      <rect width="450" height="95" rx="10" fill="#d8f3f1"/>
+      <text class="label" x="25" y="35">Iter 3:</text><text class="label" x="25" y="60">Pathway</text><text class="label" x="25" y="82">enrichment</text>
+      <circle cx="158" cy="47" r="31" fill="#ffffff" stroke="#1b918c" stroke-width="3"/>
+      <circle cx="148" cy="36" r="8" fill="#ce4b5c"/><circle cx="172" cy="32" r="8" fill="#6aa6b8"/><circle cx="170" cy="57" r="8" fill="#e2b14c"/><circle cx="143" cy="59" r="8" fill="#8ac07d"/>
+      <line x1="148" y1="36" x2="172" y2="32" stroke="#384a5c" stroke-width="2"/><line x1="148" y1="36" x2="170" y2="57" stroke="#384a5c" stroke-width="2"/><line x1="143" y1="59" x2="170" y2="57" stroke="#384a5c" stroke-width="2"/>
+      <circle cx="238" cy="47" r="31" fill="#ffffff" stroke="#1b918c" stroke-width="3"/>
+      <path d="M220 27 H250 Q262 27 262 40 V68 H220 Z" fill="#f3f7fb" stroke="#7a8c99" stroke-width="3"/>
+      <circle cx="254" cy="61" r="11" fill="none" stroke="#526b7a" stroke-width="3"/><line x1="262" y1="69" x2="270" y2="77" stroke="#526b7a" stroke-width="3"/>
+      <circle cx="318" cy="47" r="31" fill="#ffffff" stroke="#1b918c" stroke-width="3"/>
+      <text class="label" text-anchor="middle" x="318" y="54" fill="#3776ab">Py</text>
+      <g transform="translate(368 13) rotate(-5)">
+        <rect width="68" height="68" fill="#fff2a8" stroke="#d4bc64" stroke-width="2"/>
+        <text class="note" x="8" y="21">PI3K-Akt,</text>
+        <text class="note" x="8" y="43">p53,</text>
+        <text class="note" x="8" y="62">cell cycle</text>
+      </g>
+    </g>
+
+    <line x1="1712" y1="180" x2="1712" y2="470" stroke="#d06a7a" stroke-width="3" stroke-dasharray="7 7" marker-end="url(#arrow-teal)"/>
+    <text class="note" x="1724" y="286">
+      <tspan x="1724" dy="0">Scratchpad</tspan>
+      <tspan x="1724" dy="20">accumulates</tspan>
+      <tspan x="1724" dy="20">notes across</tspan>
+      <tspan x="1724" dy="20">steps</tspan>
+    </text>
+    <text class="caption" text-anchor="middle" x="1485" y="520">
+      <tspan x="1485" dy="0">Multi-round function-calling loop: agent calls tools,</tspan>
+      <tspan x="1485" dy="23">updates scratchpad, and plans the next iteration.</tspan>
+    </text>
+  </g>
+
+  <!-- Step 4: Context manager -->
+  <g id="step-4">
+    <rect class="panel-orange" x="55" y="620" width="1020" height="360" rx="14"/>
+    <circle cx="62" cy="620" r="31" fill="#d88424" stroke="#9b5e17" stroke-width="3"/>
+    <text class="stepnum" x="53" y="630">4</text>
+    <text class="label" x="140" y="673" font-size="26">BEFORE</text>
+    <text class="label" x="515" y="673" font-size="26">ENGINE</text>
+    <text class="label" x="855" y="673" font-size="26">AFTER</text>
+    <line x1="330" y1="650" x2="330" y2="920" stroke="#c8b8a5" stroke-width="2" stroke-dasharray="9 9"/>
+    <line x1="800" y1="650" x2="800" y2="920" stroke="#c8b8a5" stroke-width="2" stroke-dasharray="9 9"/>
+
+    <!-- before file cards -->
+    <g transform="translate(85 700)">
+      <path d="M0 0 H74 L94 20 V100 H0 Z" fill="#f3a64a" stroke="#b36b19" stroke-width="3"/>
+      <path d="M74 0 V20 H94" fill="#f7c174" stroke="#b36b19" stroke-width="2"/>
+      <text class="small" text-anchor="middle" x="47" y="39">counts</text>
+      <text class="small" text-anchor="middle" x="47" y="58">matrix</text>
+      <text class="small" text-anchor="middle" x="47" y="78">(85kB)</text>
+    </g>
+    <g transform="translate(200 700)">
+      <path d="M0 0 H74 L94 20 V100 H0 Z" fill="#f3a64a" stroke="#b36b19" stroke-width="3"/>
+      <path d="M74 0 V20 H94" fill="#f7c174" stroke="#b36b19" stroke-width="2"/>
+      <text class="small" text-anchor="middle" x="47" y="36">DE analysis</text>
+      <text class="small" text-anchor="middle" x="47" y="58">output</text>
+      <text class="small" text-anchor="middle" x="47" y="78">(32kB)</text>
+    </g>
+    <g transform="translate(85 825)">
+      <path d="M0 0 H74 L94 20 V100 H0 Z" fill="#f3a64a" stroke="#b36b19" stroke-width="3"/>
+      <path d="M74 0 V20 H94" fill="#f7c174" stroke="#b36b19" stroke-width="2"/>
+      <text class="small" text-anchor="middle" x="47" y="44">scratchpad</text>
+      <text class="small" text-anchor="middle" x="47" y="68">(1kB)</text>
+    </g>
+    <g transform="translate(200 825)">
+      <path d="M0 0 H74 L94 20 V100 H0 Z" fill="#f3a64a" stroke="#b36b19" stroke-width="3"/>
+      <path d="M74 0 V20 H94" fill="#f7c174" stroke="#b36b19" stroke-width="2"/>
+      <text class="small" text-anchor="middle" x="47" y="42">dialogue</text>
+      <text class="small" text-anchor="middle" x="47" y="62">history</text>
+      <text class="small" text-anchor="middle" x="47" y="82">(12kB)</text>
+    </g>
+    <text class="label" text-anchor="middle" x="190" y="955">130kB</text>
+
+    <!-- funnel -->
+    <g transform="translate(365 690)">
+      <path d="M65 65 H265 L205 150 V235 H125 V150 Z" fill="#f39a2f" stroke="#b36b19" stroke-width="3"/>
+      <circle cx="165" cy="48" r="38" fill="#d1d5db" stroke="#7b8794" stroke-width="3"/>
+      <circle cx="165" cy="48" r="16" fill="#fff8ee" stroke="#7b8794" stroke-width="3"/>
+      <text class="label" text-anchor="middle" x="165" y="130" font-size="28">compress</text>
+    </g>
+    <g transform="translate(585 700)">
+      <circle cx="0" cy="15" r="7" fill="#3ca64a"/><text class="text" x="18" y="21">Scratchpad</text>
+      <circle cx="0" cy="50" r="7" fill="#3ca64a"/><text class="text" x="18" y="56">Incremental summary</text>
+      <circle cx="0" cy="85" r="7" fill="#3ca64a"/><text class="text" x="18" y="91">Tool-result reference</text>
+      <circle cx="0" cy="120" r="7" fill="#3ca64a"/><text class="text" x="18" y="126">Dedup</text>
+      <circle cx="0" cy="155" r="7" fill="#9ca3af"/><text class="text" x="18" y="161">Attachment release</text>
+      <text class="small" x="18" y="183">(opt-in)</text>
+    </g>
+
+    <!-- after cards -->
+    <g transform="translate(830 695)">
+      <path d="M0 0 H238 L258 20 V50 H0 Z" fill="#f3a64a" stroke="#b36b19" stroke-width="3"/>
+      <path d="M238 0 V20 H258" fill="#f7c174" stroke="#b36b19" stroke-width="2"/>
+      <text class="label" x="20" y="33">scratchpad -> kept (1kB)</text>
+    </g>
+    <g transform="translate(830 775)">
+      <path d="M0 0 H238 L258 20 V50 H0 Z" fill="#f3a64a" stroke="#b36b19" stroke-width="3"/>
+      <path d="M238 0 V20 H258" fill="#f7c174" stroke="#b36b19" stroke-width="2"/>
+      <text class="label" x="20" y="33">last 2 rounds -> kept (5kB)</text>
+    </g>
+    <g transform="translate(830 855)">
+      <path d="M0 0 H238 L258 20 V50 H0 Z" fill="#f3a64a" stroke="#b36b19" stroke-width="3"/>
+      <path d="M238 0 V20 H258" fill="#f7c174" stroke="#b36b19" stroke-width="2"/>
+      <text class="label" x="20" y="33">old -> refs (0.4kB)</text>
+    </g>
+
+    <rect x="410" y="925" width="625" height="42" rx="8" fill="#a7d992" stroke="#5f9f4d" stroke-width="3"/>
+    <text class="label" text-anchor="middle" x="722" y="952">context shrunk: 130 kB -> 6.4 kB (illustrative)</text>
+    <text class="caption" text-anchor="middle" x="565" y="1005">System compresses and summarizes context on-the-fly, keeping key memory.</text>
+  </g>
+
+  <!-- Sidecar arrows between 3 and 4 -->
+  <path d="M1245 545 C1185 600 1130 610 1065 640" fill="none" stroke="#258b88" stroke-width="10" marker-end="url(#arrow-teal)"/>
+  <text class="caption" x="1110" y="590">
+    <tspan x="1110" dy="0">context near limit /</tspan>
+    <tspan x="1110" dy="23">large tool outputs</tspan>
+  </text>
+  <path d="M1035 620 C1120 590 1190 575 1280 545" fill="none" stroke="#c77920" stroke-width="7" marker-end="url(#arrow-orange)"/>
+  <text class="caption" x="900" y="608">compressed context returned to loop</text>
+  <g transform="translate(1440 585)">
+    <circle cx="0" cy="0" r="17" fill="#884595"/><text class="stepnum" x="-8" y="9" font-size="17">3</text>
+    <text class="label" x="24" y="8">↔</text>
+    <circle cx="58" cy="0" r="17" fill="#1b918c"/><text class="stepnum" x="50" y="9" font-size="17">4</text>
+  </g>
+
+  <!-- Step 5: Answer and score -->
+  <g id="step-5">
+    <rect class="panel-coral" x="1120" y="640" width="625" height="340" rx="14"/>
+    <circle cx="1120" cy="640" r="31" fill="#d76552" stroke="#9d4639" stroke-width="3"/>
+    <text class="stepnum" x="1111" y="650">5</text>
+    <rect x="1400" y="620" width="210" height="44" rx="8" fill="#d76552" stroke="#9d4639" stroke-width="3"/>
+    <text class="panel-title" x="1430" y="650">Answer + Score</text>
+    <path d="M1665 550 L1665 625" stroke="#258b88" stroke-width="12" marker-end="url(#arrow-teal)"/>
+    <text class="caption" x="1626" y="584">final answer</text>
+    <text class="caption" x="1645" y="607">emitted</text>
+
+    <!-- final answer card -->
+    <rect x="1145" y="690" width="300" height="250" rx="9" fill="#ffffff" stroke="#c7cbd1" stroke-width="2" filter="url(#soft-shadow)"/>
+    <rect x="1145" y="690" width="300" height="42" rx="9" fill="#f27f65"/>
+    <text class="label" text-anchor="middle" x="1295" y="718" fill="#ffffff">Final Answer</text>
+    <rect x="1195" y="760" width="110" height="16" fill="#ca3b51"/><text class="label" x="1320" y="776">ESR1  -4.2</text>
+    <rect x="1217" y="805" width="88" height="16" fill="#ed9b33"/><text class="label" x="1320" y="821">BRCA1 -3.1</text>
+    <rect x="1240" y="850" width="65" height="16" fill="#4d9f50"/><text class="label" x="1320" y="866">MKI67 +2.8</text>
+    <text class="small" text-anchor="middle" x="1288" y="895">+7 more</text>
+    <rect x="1168" y="910" width="260" height="1" fill="#e5e7eb"/>
+    <rect x="1168" y="915" width="80" height="60" fill="#e7f0f7" stroke="#b7c5d0"/>
+    <text class="small" text-anchor="middle" x="1208" y="938">Pathways/</text>
+    <text class="small" text-anchor="middle" x="1208" y="958">Reactome</text>
+    <line x1="1248" y1="915" x2="1248" y2="975" stroke="#b7c5d0"/>
+    <line x1="1362" y1="915" x2="1362" y2="975" stroke="#b7c5d0"/>
+    <line x1="1248" y1="935" x2="1428" y2="935" stroke="#b7c5d0"/>
+    <line x1="1248" y1="955" x2="1428" y2="955" stroke="#b7c5d0"/>
+    <text class="small" x="1260" y="930">PI3K-Akt</text><text class="small" x="1372" y="930">p &lt; 1e-8</text>
+    <text class="small" x="1260" y="950">p53 signaling</text><text class="small" x="1372" y="950">p &lt; 1e-6</text>
+    <text class="small" x="1260" y="970">Cell cycle</text><text class="small" x="1372" y="970">p &lt; 1e-5</text>
+    <text class="tiny" text-anchor="middle" x="1295" y="1002">3 iter - 12 tool calls - 1 compression - 8.7 s</text>
+
+    <!-- scoring card -->
+    <rect x="1470" y="690" width="250" height="250" rx="9" fill="#ffffff" stroke="#c7cbd1" stroke-width="2" filter="url(#soft-shadow)"/>
+    <rect x="1470" y="690" width="250" height="42" rx="9" fill="#f27f65"/>
+    <text class="label" text-anchor="middle" x="1595" y="718" fill="#ffffff">Scoring Router</text>
+    <rect x="1495" y="755" width="200" height="70" rx="8" fill="#e9f8ea" stroke="#a4d7a7" stroke-width="2"/>
+    <circle cx="1528" cy="790" r="24" fill="#45a049"/>
+    <path d="M1515 790 L1525 802 L1543 776" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <text class="label" x="1560" y="780">Tier 1: rule check</text>
+    <text class="small" x="1560" y="802">regex / exact match</text>
+    <text class="small" x="1560" y="820">fast and cheap</text>
+    <line x1="1595" y1="835" x2="1595" y2="875" stroke="#333" stroke-width="3" marker-end="url(#arrow-orange)"/>
+    <text class="small" x="1610" y="860">fallback</text>
+    <rect x="1495" y="885" width="200" height="70" rx="8" fill="#fdeee8" stroke="#e3b6a7" stroke-width="2"/>
+    <circle cx="1528" cy="920" r="24" fill="#d9e7f5" stroke="#8395a7" stroke-width="2"/>
+    <circle cx="1528" cy="922" r="15" fill="#5b718c"/>
+    <circle cx="1522" cy="917" r="3" fill="#c7f6ff"/><circle cx="1534" cy="917" r="3" fill="#c7f6ff"/>
+    <path d="M1520 927 Q1528 934 1536 927" fill="none" stroke="#c7f6ff" stroke-width="2"/>
+    <text class="label" x="1560" y="910">Tier 2: LLM judge</text>
+    <text class="small" x="1560" y="932">for explanation / open</text>
+    <text class="small" x="1560" y="950">questions</text>
+
+    <text class="caption" text-anchor="middle" x="1435" y="1010">3 iter - 12 tool calls - 1 compression event (illustrative trace)</text>
+  </g>
+
+  <!-- Faint 4 to 5 arrow: compressed context can feed final scoring, but loop emits answer -->
+  <line x1="1075" y1="810" x2="1110" y2="810" stroke="#c77920" stroke-width="6" opacity="0.65" marker-end="url(#arrow-orange)"/>
+</svg>
