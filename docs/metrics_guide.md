@@ -284,16 +284,35 @@ failure never aborts a benchmark run.
 
 ### Backbones
 
-| Model ID | Provider | Notes |
+The CLI currently exposes **22 registered model IDs**. The manuscript
+matrix evaluates 12 backbones: 5 open-weight systems served through
+local inference infrastructure and 7 closed-source systems accessed via
+provider APIs.
+
+| Model ID | Provider / route | Notes |
 |---|---|---|
-| claude-sonnet-4 | Anthropic | |
-| claude-sonnet-4-5 | Anthropic | Judge default |
-| claude-sonnet-4-6 | Anthropic | Current |
-| claude-opus-4-5 | Anthropic | |
-| claude-opus-4-6 | Anthropic | Strongest Anthropic |
-| gpt-4o | OpenAI | General OpenAI chat model |
-| gemini-2.5-flash | Google | Low-cost Google model |
-| gemini-2.5-pro | Google | |
+| `claude-sonnet-4` | Anthropic | Claude 4 Sonnet family |
+| `claude-sonnet-4-5` | Anthropic | Default judge model in this release |
+| `claude-sonnet-4-6` | Anthropic | Claude Sonnet release target |
+| `claude-opus-4-5` | Anthropic | Claude Opus family |
+| `claude-opus-4-6` | Anthropic | Claude Opus release target |
+| `gpt-4o` | OpenAI | General OpenAI chat model |
+| `gemini-2.5-flash` | Google | Gemini Flash release path |
+| `gemini-2.5-pro` | Google | Gemini Pro release path |
+| `gemini-3-flash-preview` | Google | Gemini 3 Flash-compatible ID |
+| `grok` | xAI | xAI/Grok alias |
+| `grok-4` | xAI | xAI/Grok 4-compatible ID |
+| `openai-compatible` | Generic OpenAI-compatible endpoint | Any `/v1/chat/completions` server or router |
+| `vllm` | OpenAI-compatible local server | vLLM-served open models |
+| `tgi` | OpenAI-compatible local/server route | HuggingFace TGI-compatible inference |
+| `sglang` | OpenAI-compatible local server | SGLang-served open models |
+| `ollama` | OpenAI-compatible local server | Ollama local models |
+| `lmstudio` | OpenAI-compatible local server | LM Studio local models |
+| `llamacpp` | OpenAI-compatible local server | llama.cpp server route |
+| `huggingface-openai` | Hosted OpenAI-compatible route | HuggingFace Inference Providers |
+| `groq-openai` | Hosted OpenAI-compatible route | Groq-hosted inference |
+| `together-openai` | Hosted OpenAI-compatible route | Together AI |
+| `fireworks-openai` | Hosted OpenAI-compatible route | Fireworks AI |
 
 List at runtime: `bioagent list-backbones`.
 
@@ -310,7 +329,21 @@ List at runtime: `bioagent list-backbones`.
 voting (N samples, configurable via config YAML). Enable via CLI with
 `--self-consistency`.
 
+The manuscript-level taxonomy describes 6 harness families by combining
+single-rollout function calling, ReAct-style tool use, OpenSeeker-style
+search, self-consistency, and light/heavy Mutual-Evolve variants. The
+public CLI keeps the stable 4-mode operational surface above and exposes
+self-consistency as a wrapper.
+
 List at runtime: `bioagent list-modes`.
+
+### Context management
+
+The paper reports 6 context-management strategies: planning/scratchpad,
+memory, summarization, clearing, truncation, and rollback. In the public
+CLI, light mode enables scratchpad-style working memory by default while
+preserving environment-variable ablations; the other strategies are
+optional composition layers for long traces and recovery runs.
 
 ### deep_think purity contract
 

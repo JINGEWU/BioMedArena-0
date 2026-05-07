@@ -4,6 +4,12 @@ Python API for programmatic access to BioMedArena. For
 command-line usage see the ``bioagent`` CLI documented in the
 top-level ``README.md``.
 
+The release registry currently exposes 156 benchmark names, 75 tools,
+4 CLI modes, and 22 registered model IDs. The manuscript reports the
+paper-level substrate as 147 biomedical benchmarks, 75 tools across
+9 functional families, 6 harness families, and 6 context-management
+strategies.
+
 ## Entry points
 
 Two primary entry points:
@@ -52,6 +58,12 @@ llm:
   api_key: ${OPENAI_COMPATIBLE_API_KEY}
   base_url: ${OPENAI_COMPATIBLE_BASE_URL}
 ```
+
+The same provider route covers most hosted or self-hosted HuggingFace
+LLM inference stacks that implement the OpenAI chat-completions API,
+including vLLM, TGI, SGLang, Ollama, LM Studio, llama.cpp-compatible
+servers, HuggingFace Inference Providers, Groq, Together, Fireworks,
+and xAI/Grok endpoints.
 
 ### `eval_tasks`
 

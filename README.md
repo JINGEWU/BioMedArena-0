@@ -2,8 +2,16 @@
 
 BioMedArena is a biomedical agent evaluation harness for comparing
 LLM backbones, tool-use modes, scorers, and datasets behind one CLI.
-It currently has 156 registered benchmarks, 75 tools, 4 modes, and
-22 registered model IDs.
+The manuscript describes BioMedArena as a six-layer substrate for
+benchmark loading, tool exposure, tool selection, harness mode, context
+management, and scoring. In the paper scope, BioMedArena covers 147
+biomedical benchmarks, 75 biomedical tools grouped into 9 functional
+families, 6 harness families, and 6 context-management strategies.
+
+This public release currently has 156 registered benchmark names, 75 tools,
+4 modes, and 22 registered model IDs in the CLI. The CLI count includes
+compatibility aliases and lightweight smoke/utility entries; the paper
+count reports the benchmark scope used for the manuscript.
 
 The project is designed as a practical research surface: add a dataset,
 choose a harness mode, expose a tool pack, run a matrix, and compare
@@ -21,6 +29,7 @@ python3 scripts/run_quick_suite.py
 Expected healthy output:
 
 - 156 registered benchmarks
+- 147 biomedical benchmarks in the manuscript scope
 - 75 registered tools
 - 4 registered modes
 - 20/20 scorer checks passed
@@ -133,6 +142,11 @@ The public CLI exposes four modes:
 | `light` | Single-turn function/tool calling with scratchpad working memory. |
 | `heavy` | Multi-turn ReAct loop with tool retrieval. |
 
+The manuscript-level harness taxonomy groups these public modes with
+self-consistency wrappers and Mutual-Evolve variants. The release CLI
+keeps the stable operational surface above while exposing
+`--self-consistency` as a wrapper around any mode.
+
 A unified CLI interface is also available via `--tools` / `--reasoning-mode` /
 `--enable-thinking` flags, which map to the modes above:
 
@@ -145,6 +159,22 @@ A unified CLI interface is also available via `--tools` / `--reasoning-mode` /
 
 The legacy `--mode` / `--web-tools` flags remain supported for backward
 compatibility. Add `--self-consistency` to wrap any mode with majority voting.
+
+## Context Management
+
+BioMedArena implements the six context-management strategies described
+in the paper. Scratchpad-style planning is enabled by default in light
+mode and remains ablatable through environment settings; the remaining
+strategies can be composed for long traces or recovery runs.
+
+| Strategy | Core idea | Protects against | Setting |
+| --- | --- | --- | --- |
+| Planning / scratchpad | Compact working notes, unresolved subgoals, accumulated evidence | Loss of useful intermediate state | Light-mode default; ablatable |
+| Memory | Persistent salient facts and prior findings, re-injected on demand | Cross-turn or cross-session knowledge loss | Paper default; optional in CLI |
+| Summarization | Compressed older dialogue, tool outputs, and evidence summaries | Long traces crowding out useful context | Optional; length-triggered |
+| Clearing | Compact placeholders for stale tool outputs, reasoning traces, or media | Low-value context bulk | Optional; horizon-triggered |
+| Truncation | Sliding windows, first-last retention, token budgets | Provider context overflow | Optional; budget-triggered |
+| Rollback | Removal of the most recent low-value turn with corrective guidance | Repeated queries, tool errors, early loops | Optional; loop-triggered |
 
 ## Documentation
 
@@ -180,7 +210,7 @@ python3 -m pytest tests/smoke -q -m "not slow"
 
 ```bibtex
 @article{anonymous2026biomedarena,
-  title={BioMedArena: a state-of-the-art biomedical harness for evaluating AI agents at scale - 100+ benchmarks, 70+ tools},
+  title={BioMedArena: a Biomedical Deep-Research Agent Evaluation Harness},
   author={Anonymous Authors},
   xxx={xxx},
   year={2026}

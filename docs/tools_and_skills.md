@@ -3,9 +3,29 @@
 This file documents the public tool surface exposed through `TOOL_SPECS` and the ported life-science skills that back many `olsp_*` tools.
 
 - Native tool schemas: **75**
-- Tool categories: **33**
+- Tool category tags: **33**
+- Manuscript functional families: **9**
 - Ported OpenAI life-science skills: **39**
 - Web tools are controlled by `BIOAGENT_WEB_TOOLS=off|combined|only`; default public count with web tools enabled is 75.
+
+The manuscript groups the 33 non-exclusive category tags into 9
+functional families. A tool can appear in more than one category tag,
+so family-level counts should be treated as coverage summaries rather
+than a partition of the 75 tools.
+
+## Functional Families
+
+| Family | Representative category tags |
+| --- | --- |
+| Literature and search | `literature`, `search`, `web` |
+| Clinical reference and decision support | `clinical`, `drug`, `rare_disease`, `calculation` |
+| Genomics and transcriptomics | `genetics`, `genomics`, `gene_expression`, `rna`, `sequence` |
+| Proteins and structure | `protein`, `structure`, `proteomics`, `network` |
+| Chemistry and biochemistry | `chemistry`, `biochemistry`, `metabolomics` |
+| Disease biology | `cancer`, `immunology`, `pgx`, `target` |
+| Variants, pathways, and ontology | `variant`, `gwas`, `pathway`, `ontology`, `regulation` |
+| Imaging | `imaging` |
+| Code, statistics, and survival | `code`, `stats`, `survival` |
 
 ## Security Notes
 
